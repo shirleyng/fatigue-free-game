@@ -13,7 +13,7 @@ PImage song2;
 PImage song3;
 PImage destination; 
 //Define global variables
-Serial myPort;  
+Serial myPort;
 String data; 
 boolean trigger = false;
 boolean[] play = new boolean[10];
@@ -23,13 +23,13 @@ int score;
 int butYesX = 250, butYesY = 220;
 int butNoX = 575, butNoY = 220;
 int butWidth = 200, butHeight = 50; 
-  int test =234343;
+int test=222222; // test variable defined as random number
 int positionX, positionY; 
 PFont font;
 
 void setup() { 
-  size(740,324);
-  myPort = new Serial(this, Serial.list()[1], 9600);
+  size(740,324); //size of screen must match background image
+  myPort = new Serial(this, Serial.list()[1], 9600); //port 1 on my computer
   myPort.bufferUntil('\n'); 
   font = loadFont("SegoeUI-20.vlw");
   splashPage = loadImage("splash-page.png");
@@ -51,7 +51,7 @@ void setup() {
   audio[8] = new SoundFile(this, "Ding.wav");
   audio[9] = new SoundFile(this, "7-alert.mp3"); 
  for (int i=0; i<play.length; i++)
-   play[i] = true;
+   play[i] = true; 
 }
 
 void draw() {
@@ -76,12 +76,12 @@ void keyPressed()
       playAudio(1);
       break;
     case 'n': { 
-      printing = false;
+      printing = false; // stop printing score
       image(normalDriving, 0, 0);
       printing = false;
       break; }
     case 'r': {
-      printing = false;
+      printing = false; //stop printing score
       background(normalDriving); 
       printing = false;
       playAudio(9);
@@ -97,7 +97,7 @@ void keyPressed()
 //Plays audio recordings
 void playAudio(int i) {
   if (play[i]) {
-    if( i > 4  && i <= 5) {
+    if( i==5) {
       audio[i].play();
     }
     else if (i == 8) {
@@ -110,16 +110,6 @@ void playAudio(int i) {
       play[i] = false;
     }
   }
-} 
-
-//changes the Yes button to clicked
-void clickYes() {
-  stroke(#60D88B);
-  fill(#757C78);
-  rect(butYesX, butYesY, butWidth, butHeight, 6);
-  textFont(font,24);
-  fill(255);
-  text("Yes", 330, 255); 
 } 
 
 //reads input from arduino
@@ -178,7 +168,16 @@ void printScore(int score) {
   text("%", 630, 275); 
 }
  
-////Draws yes buttons
+//optional functions for drawing buttons
+//changes the Yes button to clicked
+//void clickYes() {
+//  stroke(#60D88B);
+//  fill(#757C78);
+//  rect(butYesX, butYesY, butWidth, butHeight, 6);
+//  textFont(font,24);
+//  fill(255);
+//  text("Yes", 330, 255); 
+//} 
 //void drawYesButton() {
 //    stroke(#60D88B);
 //    fill(0);
